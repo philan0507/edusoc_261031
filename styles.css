@@ -1,18 +1,20 @@
 :root {
-  --pink-50: #fff6fa;
-  --pink-100: #fde8f1;
-  --pink-200: #fbd0e2;
-  --pink-400: #ee8fb7;
-  --purple-100: #efe7fb;
-  --purple-300: #c3a8ee;
-  --purple-500: #8b63d1;
-  --purple-700: #5a3a9a;
-  --ink: #3b2f4a;
-  --muted: #7a6c8a;
-  --card: #ffffff;
-  --radius: 24px;
-  --shadow: 0 10px 30px rgba(139, 99, 209, .12);
+  /* 벚꽃빛 블러시 + 더스티 로즈 (Fleur 스타일 참고) */
+  --pink-50: #fbf5f1;
+  --pink-100: #f4e5dd;
+  --pink-200: #e9d1c5;
+  --pink-400: #c98c85;
+  --purple-100: #f0e2dc;
+  --purple-300: #cfa99c;
+  --purple-500: #a86f72;
+  --purple-700: #5b3b3f;
+  --ink: #3d2f30;
+  --muted: #8b7578;
+  --card: #fffaf7;
+  --radius: 20px;
+  --shadow: 0 8px 24px rgba(91, 59, 63, .07);
   --header-h: 64px;
+  --serif: "Cormorant Garamond", "Noto Serif KR", "Batang", serif;
 }
 
 * { box-sizing: border-box; }
@@ -31,7 +33,7 @@ a { color: inherit; }
 /* Header */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255, 246, 250, .85);
+  background: rgba(244, 229, 221, .88);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--pink-200);
 }
@@ -536,4 +538,122 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--purple-300)
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .petal { animation: none; display: none; }
+}
+
+/* =========================================================
+   Fleur 스타일 다듬기 — 세리프 제목, 아치(arch) 프레임, 절제된 블러시 톤
+   (위의 기본 규칙을 덮어쓰므로 파일 맨 끝에 둡니다)
+   ========================================================= */
+body { background: linear-gradient(180deg, #f8eee8, #f1e1d8 55%, #f8eee8); background-attachment: fixed; }
+
+/* 헤더 · 메뉴: 가늘고 넓은 글자 간격 */
+.brand { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: .02em; }
+.nav { gap: 2px; }
+.nav a { padding: 8px 14px; border-radius: 0; font-size: .82rem; font-weight: 600; letter-spacing: .08em; background: none !important; border-bottom: 1.5px solid transparent; }
+.nav a:hover { color: var(--purple-700); border-bottom-color: var(--pink-400); }
+.nav a.active { color: var(--purple-700); border-bottom-color: var(--purple-500); }
+.auth-btn { border-radius: 4px; background: transparent; color: var(--purple-700); border: 1px solid var(--purple-500); font-size: .78rem; letter-spacing: .06em; }
+.auth-btn:hover { background: var(--purple-500); color: #fff; }
+.lock-btn { background: transparent; border: 1px solid var(--pink-200); }
+.menu-toggle { border-radius: 4px; background: transparent; border: 1px solid var(--pink-200); }
+
+/* 섹션 제목: 위에 작은 영문 라벨, 세리프 제목 */
+.section-title { font-family: var(--serif); font-weight: 600; letter-spacing: .01em; font-size: clamp(1.8rem, 4.5vw, 2.5rem); text-align: center; margin-bottom: 10px; }
+.section-title::before { display: block; margin-bottom: 6px; font-family: "Pretendard", "Noto Sans KR", sans-serif; font-size: .66rem; font-weight: 700; letter-spacing: .32em; color: var(--pink-400); content: "SECTION"; }
+#about .section-title::before { content: "ABOUT"; }
+#curriculum .section-title::before { content: "CURRICULUM"; }
+#enroll .section-title::before { content: "ENROLLMENT"; }
+#prepare .section-title::before { content: "PREPARE"; }
+#apply .section-title::before { content: "APPLY"; }
+#poll .section-title::before { content: "VOTE"; }
+#classroom .section-title::before { content: "CLASSROOM"; }
+#quiz .section-title::before { content: "LIVE QUIZ"; }
+#faq .section-title::before { content: "Q & A"; }
+#notices .section-title::before { content: "NOTICE"; }
+.section-lead { text-align: center; margin-left: auto; margin-right: auto; }
+.sub-title { font-family: var(--serif); font-weight: 600; text-align: center; font-size: 1.7rem; }
+
+/* 카드: 얇은 테두리, 은은한 그림자 */
+.card { border: 1px solid var(--pink-200); box-shadow: var(--shadow); }
+h3, .unit h3, .about-card h3, .slide h3 { font-family: var(--serif); font-weight: 700; letter-spacing: .01em; }
+h3 { font-size: 1.2em; }
+
+/* 버튼: 단정한 직사각형 */
+.btn { border-radius: 4px; background: var(--purple-500); box-shadow: none; letter-spacing: .06em; font-size: .88rem; font-weight: 700; padding: 14px 34px; text-transform: none; }
+.btn:hover { background: var(--purple-700); transform: none; }
+.btn.sm { padding: 10px 22px; font-size: .82rem; }
+.btn.ghost { background: transparent; color: var(--purple-700); border: 1px solid var(--purple-500); }
+.btn.ghost:hover { background: var(--pink-100); }
+.chip-btn { border-radius: 4px; background: transparent; border: 1px solid var(--pink-200); }
+.chip-btn:hover { background: var(--pink-100); }
+.arrow { border-radius: 50%; background: transparent; border: 1px solid var(--purple-500); color: var(--purple-700); }
+.arrow:disabled { background: transparent; border-color: var(--pink-200); color: var(--pink-200); }
+.dot.on { background: var(--purple-500); }
+.chip, .tag { border-radius: 3px; letter-spacing: .04em; }
+
+/* 첫 화면: 아치 모양 배경 + 세리프 제목 */
+.hero { padding-top: 40px; }
+.hero-card {
+  position: relative; overflow: hidden; border-radius: 28px; border: 1px solid var(--pink-200);
+  background: linear-gradient(180deg, #f6e8e1, #efdcd2); box-shadow: none; padding: 72px 24px 48px;
+}
+.hero-card::before {
+  content: ""; position: absolute; left: 50%; top: 28px; transform: translateX(-50%);
+  width: min(78%, 560px); height: calc(100% - 28px); border-radius: 999px 999px 0 0;
+  background: rgba(255, 250, 247, .55); border: 1px solid rgba(201, 140, 133, .35); border-bottom: 0;
+}
+.hero-card > * { position: relative; }
+.hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(3rem, 10vw, 5.2rem); letter-spacing: .01em; }
+.hero .subtitle { font-family: var(--serif); font-weight: 600; letter-spacing: .04em; color: var(--purple-500); }
+.hero p.sub { max-width: 470px; }
+.eyebrow { border-radius: 3px; background: transparent; border: 1px solid var(--purple-500); letter-spacing: .18em; font-size: .72rem; }
+
+/* 정보·통계 카드: 아치 아이콘 프레임 */
+.ov-card .icon, .about-card .icon, .slide .icon {
+  display: grid; place-items: center; width: 64px; height: 78px; margin: 0 auto 10px;
+  border-radius: 999px 999px 4px 4px; background: linear-gradient(180deg, var(--pink-100), var(--pink-200)); font-size: 1.7rem;
+}
+.about-card, .slide { text-align: center; }
+.about-card .icon { margin-bottom: 14px; }
+.slide .icon { margin-left: 0; margin-right: auto; }
+.slide { text-align: left; }
+.ov-card span { letter-spacing: .12em; text-transform: uppercase; font-size: .7rem; color: var(--pink-400); }
+.stat-card { background: var(--card); }
+.stat-card .num { font-family: var(--serif); font-weight: 700; }
+.stat-card .num small { color: var(--pink-400); font-family: "Pretendard", "Noto Sans KR", sans-serif; }
+.stat-card span { letter-spacing: .14em; font-size: .78rem; }
+
+/* 주차·달력 */
+.wk-no { border-radius: 3px; background: var(--pink-100); letter-spacing: .06em; }
+.day { border-radius: 8px; }
+.day .tagc { border-radius: 3px; }
+.cal-head b { font-family: var(--serif); font-size: 1.4rem; }
+
+/* 교수자 푸터 */
+.site-footer { background: linear-gradient(180deg, #f0ddd3, #e9d1c5); border-radius: 0; margin-top: 88px; }
+.footer-profile h2 { font-family: var(--serif); font-size: 1.9rem; }
+.avatar { border-radius: 999px 999px 8px 8px; background: linear-gradient(180deg, var(--pink-100), var(--pink-200)); }
+.avatar img { border-radius: 999px 999px 8px 8px; }
+.contact { border-radius: 14px; background: rgba(255, 250, 247, .7); }
+
+/* 라이브 퀴즈 보기 색: 차분한 톤 */
+.qo0 { background: #c9707f; } .qo1 { background: #8d6a9f; } .qo2 { background: #c49a52; } .qo3 { background: #6f9c8a; }
+.qz-radio .s0 { background: #c9707f; } .qz-radio .s1 { background: #8d6a9f; } .qz-radio .s2 { background: #c49a52; } .qz-radio .s3 { background: #6f9c8a; }
+.qz-bar.qo0 { border-color: #c9707f; background: #f9e9eb; } .qz-bar.qo1 { border-color: #8d6a9f; background: #f0e9f3; }
+.qz-bar.qo2 { border-color: #c49a52; background: #f8efdd; } .qz-bar.qo3 { border-color: #6f9c8a; background: #e8f1ed; }
+.qz-pin b { font-family: var(--serif); }
+
+.to-top { background: var(--purple-500); box-shadow: 0 6px 16px rgba(91, 59, 63, .25); }
+
+/* 대화상자 */
+.dlg { border-radius: 22px; }
+.dlg h3 { font-family: var(--serif); font-size: 1.4rem; }
+.toast { border-radius: 4px; }
+
+@media (max-width: 760px) {
+  .nav { background: rgba(244, 229, 221, .98); }
+  .nav a { padding: 12px 14px; border-bottom: 0; border-left: 2px solid transparent; }
+  .nav a.active { border-left-color: var(--purple-500); }
+  .hero-card { padding: 56px 18px 36px; }
+  .hero-card::before { width: 92%; }
 }
