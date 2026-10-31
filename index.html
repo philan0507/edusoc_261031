@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>교육사회학</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="#top" id="brand"></a>
+      <nav class="nav" id="nav" aria-label="주요 메뉴"></nav>
+      <button class="auth-btn" id="authBtn" type="button">로그인</button>
+      <button class="lock-btn" id="lockBtn" type="button" aria-label="관리자 로그인" title="관리자">🔒</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="site-footer" id="instructor"></footer>
+
+  <button class="to-top" id="toTop" aria-label="맨 위로" title="맨 위로">↑</button>
+
+  <script src="config.js"></script>
+  <script src="store.js"></script>
+  <script src="app.js"></script>
+  <script src="participate.js"></script>
+  <script src="sha256.js"></script>
+  <script src="admin.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
