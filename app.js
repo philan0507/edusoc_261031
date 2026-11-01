@@ -14,7 +14,7 @@
   desc.name = "description"; desc.content = C.meta.description;
   document.head.appendChild(desc);
 
-  $("#brand").innerHTML = esc(C.brand.mark) + " " + esc(C.brand.name);
+  $("#brand").innerHTML = (C.brand.logo ? '<img class="brand-logo" src="' + esc(C.brand.logo) + '" alt="">' : "") + "<span>" + esc(C.brand.name) + "</span>";
   $("#nav").innerHTML = map(C.nav, function (n) {
     return '<a href="#' + esc(n.id) + '" data-id="' + esc(n.id) + '">' + esc(n.label) + "</a>";
   });
@@ -167,8 +167,10 @@
   $("#instructor").innerHTML =
     '<div class="footer-inner"><div class="footer-profile">' +
     '<div class="avatar" id="avatar"><img src="' + esc(ins.photo) + '" alt="' + esc(ins.name) + ' 교수자 사진"></div>' +
-    "<div><h2>" + esc(ins.name) + ' <small>' + esc(ins.affiliation) + " · " + esc(ins.role) + "</small></h2>" +
-    "<p>" + esc(ins.bio) + "</p>" +
+    "<div><h2>" + esc(ins.name) + (ins.nameEn ? ' <span class="name-en">│ ' + esc(ins.nameEn) + "</span>" : "") + "</h2>" +
+    '<p class="ins-role"><b>' + esc(ins.role) + "</b> · " + esc(ins.affiliation) + "</p>" +
+    (ins.roleEn || ins.affiliationEn ? '<p class="ins-en">' + esc([ins.roleEn, ins.affiliationEn].filter(Boolean).join(" · ")) + "</p>" : "") +
+    '<p class="ins-bio">' + esc(ins.bio) + "</p>" +
     '<div class="tags left">' + map(ins.areas, function (t) { return '<span class="tag">' + esc(t) + "</span>"; }) + "</div>" +
     "</div></div>" +
     '<ul class="contact">' + map(ins.contact, function (c) {
@@ -179,7 +181,7 @@
 
   // 사진이 없으면 꽃 아이콘으로 대체
   var img = $("#avatar img");
-  img.addEventListener("error", function () { $("#avatar").textContent = "🌸"; });
+  img.addEventListener("error", function () { $("#avatar").remove(); }); // 사진 파일이 없으면 사진 칸 자체를 숨깁니다
 
   // ---- 마감 카운트다운 ----
   var updateCountdowns = function () {

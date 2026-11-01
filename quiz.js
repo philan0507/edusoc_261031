@@ -584,7 +584,7 @@
     } else if (st === "connecting") {
       h = head + '<p class="muted">방에 연결하는 중입니다…</p>';
     } else if (st === "lobby") {
-      h = head + '<div class="qz-center"><div class="qz-big">🌸</div><p><b>' + esc(S.name) + '</b>님, 입장했어요!</p><p class="muted">교수자가 시작할 때까지 기다려 주세요.</p>' +
+      h = head + '<div class="qz-center"><div class="qz-big">🙌</div><p><b>' + esc(S.name) + '</b>님, 입장했어요!</p><p class="muted">교수자가 시작할 때까지 기다려 주세요.</p>' +
         '<button type="button" class="chip-btn" data-sact="leave">나가기</button></div>';
     } else if (st === "question" || st === "answered" || st === "timeup") {
       var q = S.q;

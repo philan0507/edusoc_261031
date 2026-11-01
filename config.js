@@ -9,7 +9,7 @@ window.SITE_CONFIG = {
     description: "교육 불평등, 학업성취 격차, 학교와 사회의 관계를 데이터로 탐구하는 예비교사를 위한 교육사회학 강의 소개."
   },
 
-  brand: { mark: "🌸", name: "교육사회학" },
+  brand: { logo: "assets/logo.webp", name: "교육사회학" }, // logo: 강좌 로고 이미지 경로
 
   // 헤더 메뉴. id는 아래 각 섹션의 id와 같아야 합니다.
   nav: [
@@ -24,7 +24,7 @@ window.SITE_CONFIG = {
   // 첫 화면
   hero: {
     badge: "", // 첫 화면 제목 위에 표시할 배지. 비워 두면 표시되지 않습니다.
-    title: "📚 교육사회학",
+    title: "교육사회학",
     subtitle: "데이터로 읽는 교육과 사회",
     description:
       "학교와 사회의 관계, 교육 불평등과 학업성취 격차, AI 시대의 새로운 교육 격차까지 교육사회학의 핵심 질문을 데이터로 분석하며 탐구합니다. 예비교사로서 마주할 교실의 현실을 사회구조와 연결해 이해하고, 모든 학생의 배움을 지원하는 교사의 실천을 함께 설계합니다.",
@@ -222,15 +222,17 @@ window.SITE_CONFIG = {
   // 푸터에 표시되는 교수자 소개 (※ 예시)
   instructor: {
     name: "김수영",
+    nameEn: "Su Young Kim, Ph.D.",
     role: "연구교수",
+    roleEn: "Research Professor",
     affiliation: "고려대학교 학부대학 원격교육센터",
+    affiliationEn: "Distance Learning Center, University College, Korea University",
     photo: "assets/instructor.jpg", // 사진 파일을 이 경로에 넣으세요. 없으면 꽃 아이콘이 표시됩니다.
     bio: "기술과 제도가 교육 기회를 넓히는 동시에 새로운 격차를 만들 수 있다는 문제의식으로, 학생들이 교육 경험을 데이터와 학문의 언어로 해석하고 포용적 실천을 설계하도록 돕는 수업을 지향합니다.",
     areas: ["고등교육", "에듀테크", "포용교육"],
     contact: [
-      { label: "이메일", value: "instructor@example.com", href: "mailto:instructor@example.com" },
-      { label: "연구실", value: "교육관 000호" },
-      { label: "면담 시간", value: "수 14:00–16:00 (사전 예약)" }
+      { label: "E-mail", value: "philan73@korea.ac.kr", href: "mailto:philan73@korea.ac.kr" },
+      { label: "Tel", value: "+82-2-3290-5071", href: "tel:+82232905071" }
     ]
   },
 
@@ -275,7 +277,7 @@ window.SITE_CONFIG = {
       { name: "consent", label: "회원 가입을 위한 개인정보 수집·이용에 동의합니다.", type: "checkbox", required: true }
     ],
     submitLabel: "가입하기",
-    successTitle: "회원 가입이 완료되었습니다 🌸",
+    successTitle: "회원 가입이 완료되었습니다",
     emptyText: "아직 가입 내역이 없습니다."
   },
 
@@ -354,5 +356,5 @@ window.SITE_CONFIG = {
     }
   },
 
-  footer: { text: "© 2027 교육사회학 강의. All rights reserved." }
+  footer: { text: "Copyright 2026 ⓒ AI WEB, All Rights Reserved. | 김수영(고려대학교 학부대학 원격교육센터)" }
 };

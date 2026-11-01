@@ -62,7 +62,7 @@
     '<p class="err" id="pwErr"></p><div class="dlg-actions"><button type="button" class="chip-btn" data-close>취소</button>' +
     '<button class="btn sm" type="submit">열기</button></div></form></dialog>' +
     '<div class="admin" id="admin" hidden role="dialog" aria-modal="true" aria-label="관리자 화면">' +
-    '<div class="admin-bar"><b>🌸 관리자</b><span class="admin-note">이 브라우저에 저장된 데이터가 표시됩니다</span>' +
+    '<div class="admin-bar"><b>관리자</b><span class="admin-note">이 브라우저에 저장된 데이터가 표시됩니다</span>' +
     '<span class="admin-bar-btns"><button type="button" class="chip-btn" id="adminLock">잠그고 나가기</button>' +
     '<button type="button" class="chip-btn" id="adminClose">닫기</button></span></div>' +
     '<nav class="admin-tabs" id="adminTabs">' + map(TABS, function (t) {

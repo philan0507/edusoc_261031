@@ -15,6 +15,7 @@
 | `quiz.js` | 라이브 퀴즈(교수자 진행, 학생 참여, AI 출제, CSV) |
 | `store.js` | 데이터 저장소(브라우저 저장). 나중에 서버를 붙일 때 여기만 바꿉니다 |
 | `make-password-hash.html` | 관리자 비밀번호 값을 만드는 도구 |
+| `assets/logo.webp` | 강좌 로고(헤더·팝업·브라우저 탭 아이콘). 경로는 `config.js`의 `brand.logo` |
 | `assets/instructor.jpg` | 교수자 사진(직접 넣으세요. 없으면 꽃 아이콘이 표시됩니다) |
 
 ## 2. 내용 고치기

@@ -98,7 +98,7 @@
     '<div class="field"><label for="lg-name">이름</label><input id="lg-name" name="name" autocomplete="off"></div>' +
     '<p class="err" id="loginErr"></p><div class="dlg-actions"><button type="button" class="chip-btn" data-close>취소</button>' +
     '<button class="btn sm" type="submit">로그인</button></div></form></dialog>' +
-    '<dialog class="dlg popup" id="popupDlg"><div class="popup-emoji">🌸</div><h3>' + esc(C.popup.title) + "</h3>" +
+    '<dialog class="dlg popup" id="popupDlg"><div class="popup-emoji">' + (C.brand.logo ? '<img src="' + esc(C.brand.logo) + '" alt="">' : "") + '</div><h3>' + esc(C.popup.title) + "</h3>" +
     "<ul>" + map(C.popup.lines, function (l) { return "<li>" + esc(l) + "</li>"; }) + "</ul>" +
     '<div class="dlg-actions"><a class="btn sm" id="popupCta" href="#' + esc(C.popup.cta.target) + '">' + esc(C.popup.cta.label) + "</a></div>" +
     '<div class="popup-foot"><label><input type="checkbox" id="hideToday"> ' + esc(C.popup.hideLabel) + '</label>' +
@@ -145,7 +145,7 @@
     St.set("people", people);
     St.set("session", { studentId: id, name: name });
     loginDlg.close();
-    toast(name + "님, 환영합니다 🌸");
+    toast(name + "님, 환영합니다");
   });
 
   // ---------- 회원 가입 ----------
