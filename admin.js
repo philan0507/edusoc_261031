@@ -210,7 +210,7 @@
     var s = SECTIONS.filter(function (x) { return x[0] === key; })[0];
     return s ? s[1] : L(key);
   };
-  var TEMPL = { videos: { title: "", url: "" } };
+  var TEMPL = { videos: { title: "", url: "" }, stats: { value: 0, suffix: "", label: "" } };
   var isObj = function (v) { return v && typeof v === "object" && !Array.isArray(v); };
   var blank = function (v) {
     if (Array.isArray(v)) return [];

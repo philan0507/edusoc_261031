@@ -425,7 +425,7 @@
     var ctx = cv.getContext("2d"), W, H;
     var size = function () { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; };
     size();
-    var colors = ["#c98c85", "#e9d1c5", "#a86f72", "#f4c9c4", "#cfa99c", "#ffffff"], ps = [];
+    var colors = ["#889063", "#cfbb99", "#e5d7c4", "#354024", "#a9ad86", "#ffffff"], ps = [];
     for (var i = 0; i < 160; i++) {
       var side = i % 2 ? 1 : -1, ang = (side > 0 ? 180 - 20 - Math.random() * 40 : 20 + Math.random() * 40) * Math.PI / 180;
       var sp = 9 + Math.random() * 11;

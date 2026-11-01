@@ -100,9 +100,11 @@
   }) + "</div></section>";
 
   // 통계
-  html += '<section class="stats"><div class="grid cols-4">' + map(C.stats, function (s) {
-    return '<div class="card stat-card"><div class="num"><span class="count" data-target="' + esc(s.value) + '">' + esc(s.value) + "</span><small>" + esc(s.suffix) + "</small></div><span>" + esc(s.label) + "</span></div>";
-  }) + "</div></section>";
+  if ((C.stats || []).length) {
+    html += '<section class="stats"><div class="grid cols-4">' + map(C.stats, function (s) {
+      return '<div class="card stat-card"><div class="num"><span class="count" data-target="' + esc(s.value) + '">' + esc(s.value) + "</span><small>" + esc(s.suffix) + "</small></div><span>" + esc(s.label) + "</span></div>";
+    }) + "</div></section>";
+  }
 
   // 프로그램 소개 + 장점 슬라이드
   html += '<section id="about"><h2 class="section-title">' + esc(a.title) + "</h2>" +

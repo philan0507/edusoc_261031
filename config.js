@@ -40,13 +40,9 @@ window.SITE_CONFIG = {
     { icon: "🎓", label: "수강 대상", value: "예비교사" }
   ],
 
-  // 숫자 통계 (※ 예시) — value는 숫자, suffix는 숫자 뒤에 붙는 단위
-  stats: [
-    { value: 15, suffix: "주", label: "과정" },
-    { value: 8, suffix: "개", label: "실습 도구" },
-    { value: 12, suffix: "편", label: "저술" },
-    { value: 10, suffix: "년+", label: "강의 경력" }
-  ],
+  // 숫자 통계 카드 — 비워 두면 화면에 표시되지 않습니다.
+  // 다시 쓰려면 이런 형식으로 추가하세요: { value: 15, suffix: "주", label: "과정" }  (value는 숫자, suffix는 숫자 뒤 단위)
+  stats: [],
 
   // 프로그램 소개 + 장점 슬라이드
   about: {
@@ -265,15 +261,12 @@ window.SITE_CONFIG = {
     title: "✍️ 회원 가입",
     lead: "아래 항목을 작성해 제출해 주세요. * 표시는 필수 항목입니다.",
     fields: [
-      { name: "name", label: "이름", type: "text", required: true, placeholder: "홍길동" },
-      { name: "studentId", label: "학번", type: "text", required: true, pattern: "^[0-9]{6,10}$", hint: "학번은 숫자 6–10자리로 입력해 주세요", placeholder: "2027000000" },
-      { name: "major", label: "학과(전공)", type: "text", required: true },
-      { name: "grade", label: "학년", type: "select", required: true, options: ["1학년", "2학년", "3학년", "4학년", "기타"] },
-      { name: "email", label: "이메일", type: "email", required: true, placeholder: "name@example.com" },
-      { name: "phone", label: "휴대폰", type: "tel", required: true, pattern: "^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$", hint: "휴대폰 번호를 010-0000-0000 형식으로 입력해 주세요", placeholder: "010-0000-0000" },
       { name: "userId", label: "아이디", type: "text", required: true, pattern: "^[a-z0-9_]{4,16}$", hint: "아이디는 영문 소문자·숫자·밑줄(_) 4–16자로 입력해 주세요", placeholder: "영문 소문자·숫자 4–16자" },
       { name: "password", label: "비밀번호", type: "password", required: true, minLength: 8, hint: "비밀번호는 8자 이상으로 입력해 주세요", placeholder: "8자 이상" },
       { name: "password2", label: "비밀번호 확인", type: "password", required: true, matches: "password", hint: "비밀번호가 서로 다릅니다" },
+      { name: "name", label: "이름", type: "text", required: true, placeholder: "홍길동" },
+      { name: "studentId", label: "학번", type: "text", required: true, pattern: "^[0-9]{6,10}$", hint: "학번은 숫자 6–10자리로 입력해 주세요", placeholder: "2027000000" },
+      { name: "phone", label: "휴대폰", type: "tel", required: true, pattern: "^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$", hint: "휴대폰 번호를 010-0000-0000 형식으로 입력해 주세요", placeholder: "010-0000-0000" },
       { name: "consent", label: "회원 가입을 위한 개인정보 수집·이용에 동의합니다.", type: "checkbox", required: true }
     ],
     submitLabel: "가입하기",
