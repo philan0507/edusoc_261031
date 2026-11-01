@@ -28,7 +28,7 @@ window.SITE_CONFIG = {
     subtitle: "데이터로 읽는 교육과 사회",
     description:
       "학교와 사회의 관계, 교육 불평등과 학업성취 격차, AI 시대의 새로운 교육 격차까지 교육사회학의 핵심 질문을 데이터로 분석하며 탐구합니다. 예비교사로서 마주할 교실의 현실을 사회구조와 연결해 이해하고, 모든 학생의 배움을 지원하는 교사의 실천을 함께 설계합니다.",
-    primary: { label: "수강 신청", target: "apply" },
+    primary: { label: "회원 가입", target: "apply" },
     secondary: { label: "커리큘럼 보기", target: "curriculum" }
   },
 
@@ -236,31 +236,31 @@ window.SITE_CONFIG = {
 
   /*
    * ───── 수강생 참여 기능 (4단계) ─────
-   * ※ 서버가 없는 정적 사이트라 투표·신청서·출석·제출 파일은 "이 브라우저 안"에만 저장됩니다.
+   * ※ 서버가 없는 정적 사이트라 투표·회원 가입 정보·출석·제출 파일은 "이 브라우저 안"에만 저장됩니다.
    *   여러 사람의 응답을 한곳에 모으려면 별도의 서버(또는 구글 시트·Firebase 등) 연결이 필요합니다.
    */
 
   // 첫 방문 환영 폭죽 (처음 방문했을 때 한 번만 터집니다. 주소 끝에 ?welcome=1을 붙이면 다시 볼 수 있습니다.)
   welcome: { confetti: true },
 
-  // 수강 신청 안내 팝업 (접속 후 delayMs 뒤에 표시, "오늘 하루 보지 않기" 선택 가능)
+  // 회원 가입 안내 팝업 (접속 후 delayMs 뒤에 표시, "오늘 하루 보지 않기" 선택 가능)
   popup: {
     enabled: true,
     delayMs: 2800,
-    title: "2027학년도 1학기 수강 신청 안내",
+    title: "2027학년도 1학기 회원 가입 안내",
     lines: [
       "교육사회학은 예비교사를 위한 강의입니다.",
-      "수강 신청서를 작성해 제출해 주세요. (※ 신청 기간은 학사 일정에 따라 안내)",
+      "회원 가입 양식을 작성해 제출해 주세요.",
       "수업은 매주 화요일 10:30–11:45입니다."
     ],
-    cta: { label: "수강 신청서 작성하기", target: "apply" },
+    cta: { label: "회원 가입하기", target: "apply" },
     hideLabel: "오늘 하루 보지 않기",
     closeLabel: "닫기"
   },
 
-  // 수강 신청서
+  // 회원 가입
   apply: {
-    title: "수강 신청서",
+    title: "회원 가입",
     lead: "아래 항목을 작성해 제출해 주세요. * 표시는 필수 항목입니다.",
     fields: [
       { name: "name", label: "이름", type: "text", required: true, placeholder: "홍길동" },
@@ -269,12 +269,11 @@ window.SITE_CONFIG = {
       { name: "grade", label: "학년", type: "select", required: true, options: ["1학년", "2학년", "3학년", "4학년", "기타"] },
       { name: "email", label: "이메일", type: "email", required: true, placeholder: "name@example.com" },
       { name: "phone", label: "연락처 (선택)", type: "tel", required: false, placeholder: "010-0000-0000" },
-      { name: "motivation", label: "수강 동기", type: "textarea", required: true, placeholder: "이 강의를 통해 알고 싶은 것을 적어 주세요." },
-      { name: "consent", label: "수강 신청을 위한 개인정보 수집·이용에 동의합니다.", type: "checkbox", required: true }
+      { name: "consent", label: "회원 가입을 위한 개인정보 수집·이용에 동의합니다.", type: "checkbox", required: true }
     ],
-    submitLabel: "신청서 제출",
-    successTitle: "수강 신청서가 접수되었습니다 🌸",
-    emptyText: "아직 제출한 신청서가 없습니다."
+    submitLabel: "가입하기",
+    successTitle: "회원 가입이 완료되었습니다 🌸",
+    emptyText: "아직 가입 내역이 없습니다."
   },
 
   // 학습 주제 투표 (결과는 막대그래프)

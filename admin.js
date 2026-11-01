@@ -1,6 +1,6 @@
 /*
  * 관리자 모드 — 자물쇠 버튼 + 비밀번호로 열립니다.
- * 사이트 내용 편집 / 수강생 명단 / 공지 / 출석·과제·신청 내역(CSV) / 설정 저장·불러오기 / 비밀번호 변경
+ * 사이트 내용 편집 / 수강생 명단 / 공지 / 출석·과제·회원 가입 내역(CSV) / 설정 저장·불러오기 / 비밀번호 변경
  *
  * ※ 서버가 없는 정적 사이트이므로 이 잠금은 "실수 방지용 문"에 가깝습니다.
  *   파일을 직접 열어 볼 수 있는 사람까지 막지는 못합니다. (자세한 내용은 README.md)
@@ -54,7 +54,7 @@
 
   // ================= 잠금 · 관리자 패널 뼈대 =================
   var TABS = [["site", "사이트 편집"], ["roster", "수강생 명단"], ["notices", "공지"], ["attendance", "출석"],
-    ["submissions", "과제"], ["applications", "수강 신청"], ["settings", "설정·백업"]];
+    ["submissions", "과제"], ["applications", "회원 가입"], ["settings", "설정·백업"]];
 
   document.body.insertAdjacentHTML("beforeend",
     '<dialog class="dlg" id="pwDlg"><form id="pwForm" novalidate><h3>🔒 관리자 로그인</h3>' +
@@ -185,7 +185,7 @@
   var SECTIONS = [["meta", "사이트 기본 정보"], ["brand", "브랜드 문구"], ["nav", "상단 메뉴"], ["hero", "첫 화면"],
     ["overview", "강의 정보 카드"], ["stats", "통계 카드"], ["about", "프로그램 소개·슬라이드"], ["schedule", "수업 일정"],
     ["curriculum", "커리큘럼(주차별)"], ["enroll", "수강 안내"], ["prepare", "수강 준비"], ["faq", "FAQ"],
-    ["instructor", "교수자"], ["popup", "안내 팝업"], ["apply", "수강 신청서"], ["poll", "투표"],
+    ["instructor", "교수자"], ["popup", "안내 팝업"], ["apply", "회원 가입"], ["poll", "투표"],
     ["classroom", "강의실 설정"], ["quiz", "라이브 퀴즈 설정"], ["welcome", "환영 효과"], ["footer", "푸터"]];
   var KO = {
     title: "제목", description: "설명", lead: "소개글", text: "내용", label: "이름표", value: "값", icon: "아이콘", name: "이름",
@@ -406,7 +406,7 @@
     downloadCsv("과제제출내역", rows);
   };
 
-  // ================= 탭: 수강 신청 =================
+  // ================= 탭: 회원 가입 =================
   var appRecs = function () {
     var apps = St.get("applications", {});
     return Object.keys(apps).map(function (k) { return apps[k]; }).sort(function (a, b) { return a.at - b.at; });
@@ -420,7 +420,7 @@
   };
   var renderApplications = function () {
     var recs = appRecs();
-    body.innerHTML = '<div class="card"><h3>수강 신청 내역 (' + recs.length + "건)</h3>" + tableHtml(appHead(), recs.map(appRow)) +
+    body.innerHTML = '<div class="card"><h3>회원 가입 내역 (' + recs.length + "건)</h3>" + tableHtml(appHead(), recs.map(appRow)) +
       '<div class="admin-actions"><button type="button" class="btn sm" data-act="appCsv">엑셀(CSV)로 내려받기</button></div></div>';
   };
 
@@ -441,7 +441,7 @@
       '<div class="field"><label for="pwNew2">새 비밀번호 확인</label><input id="pwNew2" type="password" autocomplete="new-password"></div>' +
       '<p class="err" id="pwChgErr"></p><button type="button" class="btn sm" data-act="pwChange">비밀번호 변경</button>' +
       '<p class="note">변경한 비밀번호도 이 브라우저의 수정본에 저장됩니다. 배포하려면 config.js를 내려받아 교체하세요.</p></div>' +
-      '<div class="card"><h3>되돌리기</h3><p class="muted">화면에서 고친 모든 수정본(명단·공지 포함)을 지우고 config.js 원래 내용으로 돌아갑니다. 투표·신청·출석·제출 기록은 지워지지 않습니다.</p>' +
+      '<div class="card"><h3>되돌리기</h3><p class="muted">화면에서 고친 모든 수정본(명단·공지 포함)을 지우고 config.js 원래 내용으로 돌아갑니다. 투표·회원 가입·출석·제출 기록은 지워지지 않습니다.</p>' +
       '<button type="button" class="chip-btn danger" data-act="resetAll">모든 수정본 지우기</button></div>';
   };
 
@@ -572,7 +572,7 @@
     // --- 기록 ---
     } else if (act === "attCsv") attCsv();
     else if (act === "subCsv") subCsv();
-    else if (act === "appCsv") downloadCsv("수강신청내역", [appHead()].concat(appRecs().map(appRow)));
+    else if (act === "appCsv") downloadCsv("회원가입내역", [appHead()].concat(appRecs().map(appRow)));
     else if (act === "subDl") {
       var sub = (St.get("submissions", {})[id] || {})[b.dataset.n];
       if (!sub) return;

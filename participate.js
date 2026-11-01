@@ -1,5 +1,5 @@
 /*
- * 수강생 참여 기능 — 환영 폭죽, 안내 팝업, 신청서, 실시간 투표, 로그인·출석·과제 제출
+ * 수강생 참여 기능 — 환영 폭죽, 안내 팝업, 회원 가입, 실시간 투표, 로그인·출석·과제 제출
  * 데이터는 store.js(EduStore)를 통해 저장합니다.
  */
 (function () {
@@ -148,7 +148,7 @@
     toast(name + "님, 환영합니다 🌸");
   });
 
-  // ---------- 수강 신청서 ----------
+  // ---------- 회원 가입 ----------
   var form = $("#applyForm");
   var clearErrors = function () {
     form.querySelectorAll(".err").forEach(function (p) { p.textContent = ""; });
@@ -212,7 +212,7 @@
     if (!St.set("applications", apps)) { toast("저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요."); return; }
     St.set("lastApply", r.vals.studentId);
     renderResult();
-    toast("수강 신청서가 제출되었습니다.");
+    toast("회원 가입이 완료되었습니다.");
   });
   form.addEventListener("input", function (ev) {
     var f = ev.target.closest(".field");
