@@ -44,7 +44,7 @@
     });
     if (!list.length) return;
     document.getElementById("about").insertAdjacentHTML("beforebegin",
-      '<section id="notices"><h2 class="section-title">공지사항</h2><div class="notice-list">' +
+      '<section id="notices"><h2 class="section-title">📢 공지사항</h2><div class="notice-list">' +
       map(list, function (n) {
         return '<article class="card notice' + (n.pinned ? " pinned" : "") + '"><div class="n-head">' +
           (n.pinned ? '<span class="chip">📌 고정</span>' : "") + "<h3>" + esc(n.title) + "</h3><time>" + esc(n.date) + "</time></div><p>" + esc(n.body) + "</p></article>";
@@ -411,9 +411,11 @@
     var apps = St.get("applications", {});
     return Object.keys(apps).map(function (k) { return apps[k]; }).sort(function (a, b) { return a.at - b.at; });
   };
-  var appHead = function () { return ["접수번호", "제출 시각"].concat(C.apply.fields.map(function (f) { return f.label.replace(/\s*\(선택\)/, ""); })); };
+  // 비밀번호 입력란은 화면·CSV에 나오지 않습니다 (해시만 저장되어 있습니다)
+  var appFields = function () { return C.apply.fields.filter(function (f) { return f.type !== "password"; }); };
+  var appHead = function () { return ["접수번호", "제출 시각"].concat(appFields().map(function (f) { return f.label.replace(/\s*\(선택\)/, ""); })); };
   var appRow = function (rec) {
-    return [rec.no, stamp(rec.at)].concat(C.apply.fields.map(function (f) {
+    return [rec.no, stamp(rec.at)].concat(appFields().map(function (f) {
       var v = rec.values[f.name];
       return f.type === "checkbox" ? (v ? "동의" : "") : v;
     }));

@@ -57,7 +57,7 @@
     } else if (f.type === "textarea") {
       input = '<textarea id="' + id + '" name="' + esc(f.name) + '" rows="4" placeholder="' + esc(f.placeholder || "") + '"></textarea>';
     } else {
-      input = '<input id="' + id + '" name="' + esc(f.name) + '" type="' + esc(f.type || "text") + '" placeholder="' + esc(f.placeholder || "") + '" autocomplete="off">';
+      input = '<input id="' + id + '" name="' + esc(f.name) + '" type="' + esc(f.type || "text") + '" placeholder="' + esc(f.placeholder || "") + '" autocomplete="' + (f.type === "password" ? "new-password" : "off") + '">';
     }
     return '<div class="field" data-field="' + esc(f.name) + '"><label for="' + id + '">' + esc(f.label) + req + "</label>" + input +
       '<p class="err" id="err-' + esc(f.name) + '"></p></div>';
@@ -160,7 +160,8 @@
   var validate = function () {
     var vals = {}, missing = [], invalid = [];
     ap.fields.forEach(function (f) {
-      var el = fieldEl(f.name), v = f.type === "checkbox" ? el.checked : (el.value || "").trim(), msg = "";
+      var el = fieldEl(f.name), msg = "";
+      var v = f.type === "checkbox" ? el.checked : f.type === "password" ? el.value : (el.value || "").trim(); // 비밀번호는 공백도 그대로 둡니다
       vals[f.name] = v;
       if (f.required && !v) {
         msg = f.type === "checkbox" ? "동의가 필요합니다." : f.type === "select" ? "선택해 주세요." : "입력해 주세요.";
@@ -169,6 +170,10 @@
         msg = f.hint || "형식을 확인해 주세요."; invalid.push(f);
       } else if (v && f.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
         msg = "이메일 형식을 확인해 주세요."; invalid.push(f);
+      } else if (v && f.minLength && v.length < f.minLength) {
+        msg = f.hint || "너무 짧습니다."; invalid.push(f);
+      } else if (v && f.matches && v !== fieldEl(f.matches).value) {
+        msg = f.hint || "값이 서로 다릅니다."; invalid.push(f);
       }
       if (msg) {
         $("#err-" + f.name).textContent = msg;
@@ -190,7 +195,7 @@
       map(ap.fields, function (f) {
         if (f.type === "textarea" || f.type === "checkbox" || !rec.values[f.name]) return "";
         return '<div class="info-row"><dt>' + esc(plainLabel(f)) + "</dt><dd>" + esc(rec.values[f.name]) + "</dd></div>";
-      }) + '</dl><p class="note">같은 학번으로 다시 제출하면 내용이 갱신됩니다.</p>';
+      }) + '</dl><p class="note">같은 학번으로 다시 가입하면 내용이 갱신됩니다.</p>';
   };
 
   form.addEventListener("submit", function (ev) {
@@ -208,8 +213,27 @@
     }
     var apps = St.get("applications", {}), now = Date.now();
     var prev = apps[r.vals.studentId];
-    apps[r.vals.studentId] = { no: prev ? prev.no : "A" + now.toString(36).toUpperCase(), at: now, values: r.vals };
+
+    // 아이디는 한 사람만 쓸 수 있습니다 (같은 학번이 다시 가입하는 경우는 제외)
+    if (r.vals.userId && Object.keys(apps).some(function (k) { return k !== r.vals.studentId && apps[k].values.userId === r.vals.userId; })) {
+      $("#err-userId").textContent = "이미 사용 중인 아이디입니다.";
+      fieldEl("userId").setAttribute("aria-invalid", "true");
+      fieldEl("userId").focus();
+      return;
+    }
+
+    // 비밀번호 원문은 저장하지 않고 salt를 섞은 해시만 보관합니다. (입력란 값은 기록에서 제외)
+    var cred = null, pwField = ap.fields.filter(function (f) { return f.type === "password"; })[0];
+    if (pwField) {
+      if (typeof eduHash !== "function") { toast("비밀번호 처리 기능을 불러오지 못했습니다. 새로고침해 주세요."); return; }
+      var salt = Math.random().toString(16).slice(2, 12) + now.toString(16);
+      cred = { salt: salt, hash: eduHash(r.vals[pwField.name], salt) };
+    }
+    ap.fields.forEach(function (f) { if (f.type === "password") delete r.vals[f.name]; });
+
+    apps[r.vals.studentId] = { no: prev ? prev.no : "A" + now.toString(36).toUpperCase(), at: now, values: r.vals, cred: cred };
     if (!St.set("applications", apps)) { toast("저장하지 못했습니다. 브라우저 저장 공간을 확인해 주세요."); return; }
+    ap.fields.forEach(function (f) { if (f.type === "password") fieldEl(f.name).value = ""; });
     St.set("lastApply", r.vals.studentId);
     renderResult();
     toast("회원 가입이 완료되었습니다.");

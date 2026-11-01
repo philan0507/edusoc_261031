@@ -24,7 +24,7 @@ window.SITE_CONFIG = {
   // 첫 화면
   hero: {
     badge: "", // 첫 화면 제목 위에 표시할 배지. 비워 두면 표시되지 않습니다.
-    title: "교육사회학",
+    title: "📚 교육사회학",
     subtitle: "데이터로 읽는 교육과 사회",
     description:
       "학교와 사회의 관계, 교육 불평등과 학업성취 격차, AI 시대의 새로운 교육 격차까지 교육사회학의 핵심 질문을 데이터로 분석하며 탐구합니다. 예비교사로서 마주할 교실의 현실을 사회구조와 연결해 이해하고, 모든 학생의 배움을 지원하는 교사의 실천을 함께 설계합니다.",
@@ -50,7 +50,7 @@ window.SITE_CONFIG = {
 
   // 프로그램 소개 + 장점 슬라이드
   about: {
-    title: "프로그램 소개",
+    title: "📖 프로그램 소개",
     lead: "이 강의가 다른 이유를 옆으로 넘겨 보세요.",
     slides: [
       { icon: "📊", title: "데이터로 근거를 만든다", text: "공개 통계와 조사 자료를 직접 분석하며 교육 현상을 주장이 아닌 근거로 설명하는 힘을 기릅니다." },
@@ -75,9 +75,9 @@ window.SITE_CONFIG = {
    *  - assignment(선택): { title, desc, daysAfter(수업일 + 며칠 뒤), time(마감 시각), submitUrl(제출 링크) }
    */
   curriculum: {
-    title: "커리큘럼",
+    title: "🗓️ 커리큘럼",
     lead: "주차를 눌러 학습 내용, 참고 영상, 과제를 확인하세요.",
-    calendarTitle: "수업 달력",
+    calendarTitle: "📅 수업 달력",
     calendarLead: "수업이 있는 날(매주 화요일)과 과제 마감일이 표시됩니다. 날짜를 누르면 그날의 수업 내용이 나옵니다.",
     units: [
       {
@@ -179,7 +179,7 @@ window.SITE_CONFIG = {
   },
 
   enroll: {
-    title: "수강 안내",
+    title: "📌 수강 안내",
     lead: "수강 신청 전에 아래 내용을 확인해 주세요.",
     items: [
       { label: "수강 대상", value: "예비교사" },
@@ -198,7 +198,7 @@ window.SITE_CONFIG = {
 
   // 수강 준비
   prepare: {
-    title: "수강 준비",
+    title: "🎒 수강 준비",
     lead: "특별한 사전 지식은 필요 없습니다. 아래만 챙겨 오세요.",
     items: [
       { icon: "💻", title: "노트북 또는 태블릿", text: "데이터 실습 시간에 사용합니다. 학교 대여도 가능합니다. (※ 예시)" },
@@ -209,7 +209,7 @@ window.SITE_CONFIG = {
   },
 
   faq: {
-    title: "자주 묻는 질문",
+    title: "💬 자주 묻는 질문",
     items: [
       { q: "교육학 전공자가 아니어도 들을 수 있나요?", a: "네. 예비교사라면 전공과 관계없이, 선수 지식 없이도 기초 개념부터 시작합니다." },
       { q: "데이터 분석 경험이 없어도 되나요?", a: "스프레드시트 기초만 있으면 됩니다. 실습 도구는 수업에서 차근차근 안내합니다." },
@@ -260,7 +260,7 @@ window.SITE_CONFIG = {
 
   // 회원 가입
   apply: {
-    title: "회원 가입",
+    title: "✍️ 회원 가입",
     lead: "아래 항목을 작성해 제출해 주세요. * 표시는 필수 항목입니다.",
     fields: [
       { name: "name", label: "이름", type: "text", required: true, placeholder: "홍길동" },
@@ -268,7 +268,10 @@ window.SITE_CONFIG = {
       { name: "major", label: "학과(전공)", type: "text", required: true },
       { name: "grade", label: "학년", type: "select", required: true, options: ["1학년", "2학년", "3학년", "4학년", "기타"] },
       { name: "email", label: "이메일", type: "email", required: true, placeholder: "name@example.com" },
-      { name: "phone", label: "연락처 (선택)", type: "tel", required: false, placeholder: "010-0000-0000" },
+      { name: "phone", label: "휴대폰", type: "tel", required: true, pattern: "^01[0-9]-?[0-9]{3,4}-?[0-9]{4}$", hint: "휴대폰 번호를 010-0000-0000 형식으로 입력해 주세요", placeholder: "010-0000-0000" },
+      { name: "userId", label: "아이디", type: "text", required: true, pattern: "^[a-z0-9_]{4,16}$", hint: "아이디는 영문 소문자·숫자·밑줄(_) 4–16자로 입력해 주세요", placeholder: "영문 소문자·숫자 4–16자" },
+      { name: "password", label: "비밀번호", type: "password", required: true, minLength: 8, hint: "비밀번호는 8자 이상으로 입력해 주세요", placeholder: "8자 이상" },
+      { name: "password2", label: "비밀번호 확인", type: "password", required: true, matches: "password", hint: "비밀번호가 서로 다릅니다" },
       { name: "consent", label: "회원 가입을 위한 개인정보 수집·이용에 동의합니다.", type: "checkbox", required: true }
     ],
     submitLabel: "가입하기",
@@ -278,7 +281,7 @@ window.SITE_CONFIG = {
 
   // 학습 주제 투표 (결과는 막대그래프)
   poll: {
-    title: "가장 먼저 배우고 싶은 주제",
+    title: "🗳️ 가장 먼저 배우고 싶은 주제",
     lead: "한 가지를 골라 투표해 주세요. 결과는 바로 막대그래프에 반영되고, 다시 투표하면 선택을 바꿀 수 있습니다.",
     options: [
       "기능주의와 갈등이론",
@@ -292,7 +295,7 @@ window.SITE_CONFIG = {
 
   // 강의실 (로그인 · 출석 · 과제 파일 제출)
   classroom: {
-    title: "강의실",
+    title: "🏫 강의실",
     lead: "로그인하면 출석을 체크하고 과제 파일을 제출할 수 있습니다.",
     attendance: {
       enforceTime: true,   // true: 수업일에만 출석 가능 / false: 시간 제한 없이 누를 수 있음(시험용)
@@ -328,7 +331,7 @@ window.SITE_CONFIG = {
    *  - 교수자 화면은 관리자 로그인(🔓) 후에만 보입니다.
    */
   quiz: {
-    title: "라이브 퀴즈",
+    title: "🎯 라이브 퀴즈",
     lead: "수업 중 교수자가 방을 열면, 학생은 QR 코드를 촬영하거나 PIN을 입력해 입장하고 실시간으로 문제를 풉니다.",
     peerPrefix: "edusoc-",   // 방 이름 앞에 붙는 글자. 다른 사이트와 겹치지 않게 바꿔 두세요.
     publicUrl: "",           // QR에 담을 사이트 주소. 비우면 지금 열린 주소를 씁니다.
