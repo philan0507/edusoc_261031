@@ -111,7 +111,12 @@ section { max-width: 1080px; margin: 0 auto; padding: 72px 20px 24px; }
   padding: 6px 4px 20px; scrollbar-width: none; outline-offset: 4px;
 }
 .slides::-webkit-scrollbar { display: none; }
-.slide { flex: 0 0 min(86%, 380px); scroll-snap-align: start; }
+/* 한 화면에 카드가 딱 맞게 들어가도록 폭을 나눕니다 (큰 화면 3장 · 중간 2장 · 휴대폰 1장) */
+.slide { flex: 0 0 calc((100% - 36px) / 3); scroll-snap-align: start; }
+.slides { scroll-padding-left: 4px; }
+.dot[hidden], .slider-ctrl[hidden] { display: none; }
+@media (max-width: 959px) { .slide { flex-basis: calc((100% - 18px) / 2); } }
+@media (max-width: 599px) { .slide { flex-basis: 100%; } }
 .slide .icon { font-size: 2.2rem; }
 .slide h3 { margin: 8px 0 6px; color: var(--purple-700); }
 .slide p { margin: 0; color: var(--muted); }

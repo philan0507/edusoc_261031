@@ -324,20 +324,24 @@
   var step = function () {
     return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : track.clientWidth;
   };
+  // 한 화면에 카드가 정확히 몇 장 들어가는지(CSS가 1·2·3장으로 맞춤) 계산해, 카드가 반쯤 잘려 보이지 않게 합니다.
+  var perView = function () { return Math.max(1, Math.round((track.clientWidth - 8 + 18) / step())); };
+  var positions = function () { return Math.max(1, slides.length - perView() + 1); };
   var current = function () {
-    // 화면이 넓어 마지막 슬라이드까지 맞춰 스크롤할 수 없을 때도 끝에 닿으면 마지막으로 봅니다.
-    if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2 && track.scrollLeft > 0) return slides.length - 1;
-    return Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / step())));
+    var max = positions() - 1;
+    if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2 && track.scrollLeft > 0) return max;
+    return Math.max(0, Math.min(max, Math.round(track.scrollLeft / step())));
   };
   var go = function (i) {
-    i = Math.max(0, Math.min(slides.length - 1, i));
+    i = Math.max(0, Math.min(positions() - 1, i));
     track.scrollTo({ left: i * step(), behavior: reduceMotion ? "auto" : "smooth" });
   };
   var syncDots = function () {
-    var c = current();
-    dots.forEach(function (d, i) { d.classList.toggle("on", i === c); });
+    var c = current(), n = positions();
+    dots.forEach(function (d, i) { d.hidden = i >= n; d.classList.toggle("on", i === c); });
     $("#prev").disabled = c === 0;
-    $("#next").disabled = c === slides.length - 1;
+    $("#next").disabled = c >= n - 1;
+    document.querySelector(".slider-ctrl").hidden = n <= 1;
   };
   $("#prev").addEventListener("click", function () { go(current() - 1); });
   $("#next").addEventListener("click", function () { go(current() + 1); });
